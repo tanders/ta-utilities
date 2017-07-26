@@ -1,0 +1,10 @@
+# Temp files
+*~
+
+# Compiled files
+*.clufasl
+
+# System files
+.DS_Store
+/graham-utils.lisp
+old
