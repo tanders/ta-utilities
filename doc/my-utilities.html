@@ -1,0 +1,1722 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="cludg.css"/>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+<title>
+my-utilities</title>
+</head>
+<body>
+<div id="navbar">
+<table cellspacing="0" cellpadding="0" border="0" style="width: 100%;">
+<colgroup span="3">
+<col width="0*"/>
+<col width="0*"/>
+<col width="1*"/>
+</colgroup>
+<tr>
+<td align="left" valign="baseline">
+<a href="make-package.html">
+Prev:&nbsp;make-package</a>
+<br/>
+<a href="export.html">
+Next:&nbsp;export</a>
+</td>
+<td>
+&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td align="left" valign="baseline">
+<span class="upchain">
+<b>
+my-utilities</b>
+<br/>
+<a href="index.html">
+Index</a>
+</span>
+&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+</table>
+</div>
+<div class="cludg-doc-body">
+<h2>
+my-utilities
+</h2>
+<table style="width: 100%;" class="summary-table">
+<tr class="table-heading-color">
+<th class="summary" colspan="2">
+Method summary</th>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239156">
+subseq-after</a>
+</td>
+<td class="summary">
+limiter (proseq sequence)</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239155">
+subseq-before</a>
+</td>
+<td class="summary">
+limiter (proseq sequence)</td>
+</tr>
+</table>
+<table style="width: 100%;" class="summary-table">
+<tr class="table-heading-color">
+<th class="summary" colspan="2">
+Function summary</th>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239166">
+after-keyword</a>
+</td>
+<td class="summary">
+inlist</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239178">
+all-members?</a>
+</td>
+<td class="summary">
+items inlist <em>&amp;rest</em> args</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239194">
+alternate</a>
+</td>
+<td class="summary">
+func1 func2 list</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239175">
+append-atoms</a>
+</td>
+<td class="summary">
+inlist <em>&amp;rest</em> atoms</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239186">
+arithmeric-series</a>
+</td>
+<td class="summary">
+factor offset length</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239162">
+at-even-position</a>
+</td>
+<td class="summary">
+in-list</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239163">
+at-odd-position</a>
+</td>
+<td class="summary">
+in-list</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239161">
+at-position</a>
+</td>
+<td class="summary">
+in-list factor offset</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239187">
+average</a>
+</td>
+<td class="summary">
+<em>&amp;rest</em> numbers</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239195">
+bash</a>
+</td>
+<td class="summary">
+cmd <em>&amp;key</em> args (gui? nil) (init-file &quot;~/.bash_profile&quot;)</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239165">
+before-keyword</a>
+</td>
+<td class="summary">
+inlist</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239185">
+between?</a>
+</td>
+<td class="summary">
+min value max</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239193">
+concatenate-symbols</a>
+</td>
+<td class="summary">
+<em>&amp;rest</em> args</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239189">
+convert-to-package</a>
+</td>
+<td class="summary">
+form from-package to-package</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239198">
+dbg</a>
+</td>
+<td class="summary">
+id format-string <em>&amp;rest</em> args</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239182">
+dx-&gt;x</a>
+</td>
+<td class="summary">
+numbers <em>&amp;optional</em> (start 0)</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239181">
+find-recursively</a>
+</td>
+<td class="summary">
+item inlist <em>&amp;key</em> (test #'eql)</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239154">
+first-n</a>
+</td>
+<td class="summary">
+inlist <em>&amp;optional</em> (number 1)</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239158">
+flat</a>
+</td>
+<td class="summary">
+input</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239188">
+integrate</a>
+</td>
+<td class="summary">
+durations time</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239180">
+items-ordered-as?</a>
+</td>
+<td class="summary">
+items ordered-list</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239164">
+keyword-position</a>
+</td>
+<td class="summary">
+list</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239153">
+last-element</a>
+</td>
+<td class="summary">
+inlist</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239179">
+last-eq?</a>
+</td>
+<td class="summary">
+inlist item</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239174">
+length=1</a>
+</td>
+<td class="summary">
+inlist</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239177">
+map-pairwise</a>
+</td>
+<td class="summary">
+fn xs</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239173">
+map-plist-vals</a>
+</td>
+<td class="summary">
+fn plist</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239176">
+mappend</a>
+</td>
+<td class="summary">
+func <em>&amp;rest</em> inlists</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239160">
+mat-trans</a>
+</td>
+<td class="summary">
+lists</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239159">
+one-level-flat</a>
+</td>
+<td class="summary">
+list</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239172">
+pairs-&gt;plist</a>
+</td>
+<td class="summary">
+pairs</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239171">
+plist-&gt;pairs</a>
+</td>
+<td class="summary">
+plist</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239191">
+recursive-apply</a>
+</td>
+<td class="summary">
+form</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239169">
+remove-keyargs</a>
+</td>
+<td class="summary">
+to-remove key-args</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239184">
+remove-nth</a>
+</td>
+<td class="summary">
+n list</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239168">
+remove-properties</a>
+</td>
+<td class="summary">
+properties property-list</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239167">
+remove-property</a>
+</td>
+<td class="summary">
+property property-list</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239170">
+replace-element</a>
+</td>
+<td class="summary">
+item position list</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239192">
+save-lisp-expr</a>
+</td>
+<td class="summary">
+expr <em>&amp;optional</em> (path (choose-new-file-dialog))</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239157">
+split-list</a>
+</td>
+<td class="summary">
+n inlist</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239199">
+start-debug</a>
+</td>
+<td class="summary">
+<em>&amp;rest</em> ids</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239200">
+stop-debug</a>
+</td>
+<td class="summary">
+<em>&amp;rest</em> ids</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239183">
+x-&gt;dx</a>
+</td>
+<td class="summary">
+numbers</td>
+</tr>
+</table>
+<table style="width: 100%;" class="summary-table">
+<tr class="table-heading-color">
+<th class="summary" colspan="2">
+Macro summary</th>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239190">
+format-to-file</a>
+</td>
+<td class="summary">
+path format-string <em>&amp;rest</em> format-args</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="my-utilities.html#_g239196">
+mac</a>
+</td>
+<td class="summary">
+body</td>
+</tr>
+</table>
+<div class="defparam">
+<div class="defunsignatures">
+<a id="_g239197">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+*dbg-ids*&nbsp;&nbsp;</td>
+<td class="lambda-list">
+</td>
+<td class="symbol-type">
+&nbsp;[Variable]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="doc-body">
+<p>
+Identifiers used by dbg 
+ </p>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239155">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+subseq-before&nbsp;&nbsp;</td>
+<td class="lambda-list">
+limiter (proseq sequence)</td>
+<td class="symbol-type">
+&nbsp;[Method]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="doc-body">
+<p>
+Returns the subsequence before the limiter 
+ </p>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239156">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+subseq-after&nbsp;&nbsp;</td>
+<td class="lambda-list">
+limiter (proseq sequence)</td>
+<td class="symbol-type">
+&nbsp;[Method]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="doc-body">
+<p>
+Returns the subsequence after the limiter 
+ </p>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239153">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+last-element&nbsp;&nbsp;</td>
+<td class="lambda-list">
+inlist</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239154">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+first-n&nbsp;&nbsp;</td>
+<td class="lambda-list">
+inlist <em>&amp;optional</em> (number 1)</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239157">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+split-list&nbsp;&nbsp;</td>
+<td class="lambda-list">
+n inlist</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="doc-body">
+<p>
+splits inlist in a list of n sublist of same length (last list may be longer). 
+ </p>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239158">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+flat&nbsp;&nbsp;</td>
+<td class="lambda-list">
+input</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239159">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+one-level-flat&nbsp;&nbsp;</td>
+<td class="lambda-list">
+list</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="doc-body">
+<p>
+flatens one level of the given form. 
+ Example: (one-level-flat '(((note) (note)) ((pause) (pause)) ((note)))) 
+ -&gt; ( (note) (note) (pause) (pause) (note)) 
+ </p>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239160">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+mat-trans&nbsp;&nbsp;</td>
+<td class="lambda-list">
+lists</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="doc-body">
+<p>
+Matrix transformation. 
+ </p>
+<p>
+(mat-trans '((a1 a2 a3) (b1 b2 b3) (c1 c2 c3) ...)) 
+ =&gt; ((a1 b1 c1 ...) (a2 b2 c2 ...) (a3 b3 c3 ...)) 
+ </p>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239161">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+at-position&nbsp;&nbsp;</td>
+<td class="lambda-list">
+in-list factor offset</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="doc-body">
+<p>
+Returns a list containing every factor-th elements of in-list starting at offset 
+ </p>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239162">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+at-even-position&nbsp;&nbsp;</td>
+<td class="lambda-list">
+in-list</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239163">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+at-odd-position&nbsp;&nbsp;</td>
+<td class="lambda-list">
+in-list</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239164">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+keyword-position&nbsp;&nbsp;</td>
+<td class="lambda-list">
+list</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="doc-body">
+<p>
+Returns the position of the first keyword in list 
+ </p>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239165">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+before-keyword&nbsp;&nbsp;</td>
+<td class="lambda-list">
+inlist</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="doc-body">
+<p>
+Returns sublist before the first keyword in list. 
+ </p>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239166">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+after-keyword&nbsp;&nbsp;</td>
+<td class="lambda-list">
+inlist</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="doc-body">
+<p>
+Returns sublist after the first keyword in list including the keyword. 
+ </p>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239167">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+remove-property&nbsp;&nbsp;</td>
+<td class="lambda-list">
+property property-list</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="doc-body">
+<p>
+Removes a property and its value out of a property list 
+ </p>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239168">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+remove-properties&nbsp;&nbsp;</td>
+<td class="lambda-list">
+properties property-list</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="doc-body">
+<p>
+Removes all properties and their values out of a property list 
+ </p>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239169">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+remove-keyargs&nbsp;&nbsp;</td>
+<td class="lambda-list">
+to-remove key-args</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239170">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+replace-element&nbsp;&nbsp;</td>
+<td class="lambda-list">
+item position list</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="doc-body">
+<p>
+Replaces nondestructivly one element of a given list by an atom or a list. 
+ </p>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239171">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+plist-&gt;pairs&nbsp;&nbsp;</td>
+<td class="lambda-list">
+plist</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239172">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+pairs-&gt;plist&nbsp;&nbsp;</td>
+<td class="lambda-list">
+pairs</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239173">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+map-plist-vals&nbsp;&nbsp;</td>
+<td class="lambda-list">
+fn plist</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="doc-body">
+<p>
+mapcar relative: maps fn over values in plist. 
+ </p>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239174">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+length=1&nbsp;&nbsp;</td>
+<td class="lambda-list">
+inlist</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239175">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+append-atoms&nbsp;&nbsp;</td>
+<td class="lambda-list">
+inlist <em>&amp;rest</em> atoms</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="doc-body">
+<p>
+takes a list and an arbitrary number of atoms and puts all those in one list 
+ </p>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239176">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+mappend&nbsp;&nbsp;</td>
+<td class="lambda-list">
+func <em>&amp;rest</em> inlists</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="doc-body">
+<p>
+Apply func to each element of inlist and append the result. 
+ </p>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239177">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+map-pairwise&nbsp;&nbsp;</td>
+<td class="lambda-list">
+fn xs</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="doc-body">
+<p>
+Collects the result of applying the binary function gn on all pairwise combinations of elements in xs, i.e.,11 ((fn xs1 xs2) .. (fn xs1 xsN) (fn xs2 xs3) .. (fn xsN-1 xsN)). 
+ </p>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239178">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+all-members?&nbsp;&nbsp;</td>
+<td class="lambda-list">
+items inlist <em>&amp;rest</em> args</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239179">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+last-eq?&nbsp;&nbsp;</td>
+<td class="lambda-list">
+inlist item</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239180">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+items-ordered-as?&nbsp;&nbsp;</td>
+<td class="lambda-list">
+items ordered-list</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="doc-body">
+<p>
+Are the (possible less) elements in items in same order as elements in ordered-list 
+ </p>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239181">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+find-recursively&nbsp;&nbsp;</td>
+<td class="lambda-list">
+item inlist <em>&amp;key</em> (test #'eql)</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="doc-body">
+<p>
+Returns the first element of inlist matching item according test. Inlist is checked recursively (therefore function can not find a list item in inlist!). 
+ </p>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239182">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+dx-&gt;x&nbsp;&nbsp;</td>
+<td class="lambda-list">
+numbers <em>&amp;optional</em> (start 0)</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239183">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+x-&gt;dx&nbsp;&nbsp;</td>
+<td class="lambda-list">
+numbers</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239184">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+remove-nth&nbsp;&nbsp;</td>
+<td class="lambda-list">
+n list</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="doc-body">
+<p>
+Return list with element at position n removed. 
+ </p>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239185">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+between?&nbsp;&nbsp;</td>
+<td class="lambda-list">
+min value max</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="doc-body">
+<p>
+Returns value when the value is inside the interval [min, max], NIL otherwise 
+ </p>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239186">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+arithmeric-series&nbsp;&nbsp;</td>
+<td class="lambda-list">
+factor offset length</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239187">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+average&nbsp;&nbsp;</td>
+<td class="lambda-list">
+<em>&amp;rest</em> numbers</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239188">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+integrate&nbsp;&nbsp;</td>
+<td class="lambda-list">
+durations time</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="doc-body">
+<p>
+Return the running sum of the durations, starting from time 
+ </p>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239189">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+convert-to-package&nbsp;&nbsp;</td>
+<td class="lambda-list">
+form from-package to-package</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="doc-body">
+<p>
+converts the given form in the given package, i.e. if package is not the current package 
+ it will add &lt;package-name&gt;:: in front of every symbol. 
+ </p>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239191">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+recursive-apply&nbsp;&nbsp;</td>
+<td class="lambda-list">
+form</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="doc-body">
+<p>
+Somewhat like eval, but no evaluation of symbols 
+ </p>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239192">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+save-lisp-expr&nbsp;&nbsp;</td>
+<td class="lambda-list">
+expr <em>&amp;optional</em> (path (choose-new-file-dialog))</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="doc-body">
+<p>
+The given lisp expr will be saved to the given path. 
+ </p>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239193">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+concatenate-symbols&nbsp;&nbsp;</td>
+<td class="lambda-list">
+<em>&amp;rest</em> args</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="doc-body">
+<p>
+Takes an arbitrary number of symbols, strings or numbers and combines them to a single symbol 
+ </p>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239194">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+alternate&nbsp;&nbsp;</td>
+<td class="lambda-list">
+func1 func2 list</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="doc-body">
+<p>
+Calls func1 and func2 alternatively on the elements of list and collects the returning values in a list 
+ </p>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239195">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+bash&nbsp;&nbsp;</td>
+<td class="lambda-list">
+cmd <em>&amp;key</em> args (gui? nil) (init-file &quot;~/.bash_profile&quot;)</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="doc-body">
+<p>
+A portable implementation for calling the bash shell. Executes cmd with args and shows the output. If gui? is nil (the default), then the output is written to *standard-output*. Otherwise, the output is written into a special window (presently, this is only supported for LispWorks where a CAPI pane is opened). 
+ NB: this function does not return before the cmd is finished -- consider running it is its own thread (e.g. using port:make-process). 
+ </p>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239198">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+dbg&nbsp;&nbsp;</td>
+<td class="lambda-list">
+id format-string <em>&amp;rest</em> args</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="doc-body">
+<p>
+Print debugging info if (DEBUG ID) has been specified 
+ </p>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239199">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+start-debug&nbsp;&nbsp;</td>
+<td class="lambda-list">
+<em>&amp;rest</em> ids</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="doc-body">
+<p>
+Start debug output on the given ids. 
+ </p>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239200">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+stop-debug&nbsp;&nbsp;</td>
+<td class="lambda-list">
+<em>&amp;rest</em> ids</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="doc-body">
+<p>
+Stop debug on ids. With no ids stop debugging altogether. 
+ </p>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239190">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+format-to-file&nbsp;&nbsp;</td>
+<td class="lambda-list">
+path format-string <em>&amp;rest</em> format-args</td>
+<td class="symbol-type">
+&nbsp;[Macro]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="doc-body">
+<p>
+The given lisp expr will be saved to the given path. 
+ </p>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g239196">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+mac&nbsp;&nbsp;</td>
+<td class="lambda-list">
+body</td>
+<td class="symbol-type">
+&nbsp;[Macro]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="doc-body">
+<p>
+A shorthand to display macroexpansion 
+ </p>
+</div>
+</div>
+</div>
+<div class="cludg-footer">
+Generated by&nbsp;<a href="mailto:ihatchondo@common-lisp.net" lang="en">
+CLDOC</a>
+- 2017-07-26 21:58:08</div>
+</body>
+</html>
