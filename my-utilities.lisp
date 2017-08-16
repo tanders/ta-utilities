@@ -13,6 +13,12 @@
   (butlast inlist
            (- (length inlist) number)))
 
+(defun ensure-list (x)
+  "Ensures that x is a list. If not, a list is wrapped around."
+  (if (listp x)
+    x
+    (list x)))
+
 (defmethod subseq-before (limiter (proseq sequence))
   "Returns the subsequence before the limiter"
   (subseq proseq 0 (position limiter proseq)))
@@ -94,6 +100,10 @@ Example: (one-level-flat '(((note) (note)) ((pause) (pause)) ((note))))
       NIL)))
 
 ; (after-keyword '(1 2 3 :test1 4 :test2 5))
+
+(defun properties (property-list)
+  "Returns all properties of a property list"
+  (at-even-position property-list))
 
 (defun remove-property (property property-list)
   "Removes a property and its value out of a property list"
@@ -226,7 +236,7 @@ Example: (one-level-flat '(((note) (note)) ((pause) (pause)) ((note))))
 
 ; https://stackoverflow.com/questions/9444885/common-lisp-how-to-return-a-list-without-the-nth-element-of-a-given-list
 (defun remove-nth (n list)
-  "Return list with element at position n removed."
+  "Return list with element at position n (int) removed."
   (declare
     (type (integer 0) n)
     (type list list))
@@ -361,6 +371,8 @@ it will add <package-name>:: in front of every symbol."
 ;; TODO: see shell defs below to learn how you could improve this def...
 ;;
 
+#| ;; definition commented out to remove dependency to system port
+
 (defun bash (cmd &key args (gui? nil) (init-file "~/.bash_profile"))
   "A portable implementation for calling the bash shell. Executes cmd with args and shows the output. If gui? is nil (the default), then the output is written to *standard-output*. Otherwise, the output is written into a special window (presently, this is only supported for LispWorks where a CAPI pane is opened). 
 NB: this function does not return before the cmd is finished -- consider running it is its own thread (e.g. using port:make-process)."
@@ -431,6 +443,8 @@ NB: this function does not return before the cmd is finished -- consider running
        (unless line (return))
        (format out-stream "~a~%" line)))
     ))
+
+|#
 
 ; (bash "ls" :args (list "-l" "~"))
 ;; NB: the PATH is not properly printed (compare with output from env), why?

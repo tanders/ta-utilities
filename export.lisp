@@ -1,10 +1,11 @@
 (in-package :ta-utils)
 
 (export '(;; list utils
-	  last-element first-n subseq-before subseq-after split-list
+	  last-element first-n ensure-list
+          subseq-before subseq-after split-list
 	  flat one-level-flat mat-trans at-position at-even-position at-odd-position
 	  keyword-position before-keyword after-keyword
-	  remove-property remove-properties remove-keyargs replace-element
+	  properties remove-property remove-properties remove-keyargs replace-element
 	  plist->pairs pairs->plist map-plist-vals
 	  length=1 append-atoms mappend all-members? last-eq? items-ordered-as?
 	  find-recursively dx->x x->dx
