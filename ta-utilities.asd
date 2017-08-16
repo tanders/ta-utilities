@@ -12,7 +12,8 @@
 	       (:file "my-utilities")
 	       ;; (:file "graham-utils") ;; utilities by Paul Graham
 	       (:file "export"))
-  :depends-on ("port"))
+  ;; :depends-on ("port")
+  )
 
 
 
