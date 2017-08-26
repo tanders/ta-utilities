@@ -53,7 +53,7 @@
 (defun one-level-flat (list)
   "flatens one level of the given form.
 Example: (one-level-flat '(((note) (note)) ((pause) (pause)) ((note))))
--> ( (note) (note)  (pause) (pause)  (note))"
+=> ((note) (note)  (pause) (pause)  (note))"
   (apply #'append list))
 
 
@@ -63,6 +63,7 @@ Example: (one-level-flat '(((note) (note)) ((pause) (pause)) ((note))))
    => ((a1 b1 c1 ...) (a2 b2 c2 ...) (a3 b3 c3 ...))"
   (apply #'mapcar #'(lambda (&rest all) all) 
 	 lists))
+; (mat-trans '((a1 a2 a3) (b1 b2 b3) (c1 c2 c3)))
 
 (defun at-position (in-list factor offset)
   "Returns a list containing every factor-th elements of in-list starting at offset"
@@ -123,6 +124,10 @@ Example: (one-level-flat '(((note) (note)) ((pause) (pause)) ((note))))
 
 ; (remove-properties '(:test1 :test2) '(:a 1 :test1 2 :x 3 :test2 4))
 
+
+
+
+
 (defun remove-keyargs (to-remove key-args)
   (reduce #'(lambda (l p) (remove-property p l)) 
           to-remove :initial-value key-args))
@@ -132,6 +137,19 @@ Example: (one-level-flat '(((note) (note)) ((pause) (pause)) ((note))))
   (append (subseq list 0 position)
           (if (consp item) item (list item))
           (subseq list (1+ position) (length list))))
+
+
+(defun update-property (plist property newvalue)
+  "Replaces nondestructivly the value of property in the property list plist with newvalue. If the property is not already contained in plist then it is added at the end."
+  (if (find property plist)
+    (let ((pos (position property plist))) 
+      (replace-element newvalue (1+ pos) plist))
+    (append plist
+            (list property newvalue))))
+
+; (update-property '(:a 1 :b 2 :c 3) :b 5)
+; (update-property '(:a 1 :b 2 :c 3) :x 42)
+
 
 
 ;; based on https://github.com/fukamachi/assoc-utils/blob/master/src/assoc-utils.lisp
