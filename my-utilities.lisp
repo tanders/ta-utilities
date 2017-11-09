@@ -51,10 +51,16 @@
     (reverse (flat-aux input))))
 
 (defun one-level-flat (list)
-  "flatens one level of the given form.
-Example: (one-level-flat '(((note) (note)) ((pause) (pause)) ((note))))
-=> ((note) (note)  (pause) (pause)  (note))"
+  "Flattens upmost level of the given form.
+Example: (one-level-flat '(((note) (note)) ((rest) (rest)) ((note))))
+=> ((note) (note)  (rest) (rest)  (note))"
   (apply #'append list))
+
+(defun inner-flat (list)
+  "Flattens sublists.
+Example: (inner-flat '(((note) (note)) ((rest) (rest)) ((note))))
+=> ((note note)  (rest rest) (note))"
+  (mapcar #'flat list))
 
 
 (defun mat-trans (lists)
@@ -64,6 +70,14 @@ Example: (one-level-flat '(((note) (note)) ((pause) (pause)) ((note))))
   (apply #'mapcar #'(lambda (&rest all) all) 
 	 lists))
 ; (mat-trans '((a1 a2 a3) (b1 b2 b3) (c1 c2 c3)))
+
+(defun zip (&rest lists)
+  "Zips/splices any number of lists together so that in the resulting list elements from different list are alternating.
+
+  (zip '(a b c d e) '(0 1 2 3 4))
+  ; => (A 0 B 1 C 2 D 3 E 4)"
+  (apply #'mappend #'list lists))
+  
 
 (defun at-position (in-list factor offset)
   "Returns a list containing every factor-th elements of in-list starting at offset"
@@ -133,7 +147,11 @@ Example: (one-level-flat '(((note) (note)) ((pause) (pause)) ((note))))
           to-remove :initial-value key-args))
 
 (defun replace-element (item position list)
-  "Replaces nondestructivly one element of a given list by an atom or a list."
+  "Replaces nondestructivly one element of a given list by an atom or a list.
+
+Example:
+
+(replace-element 'x 1 '(a b c d e))"
   (append (subseq list 0 position)
           (if (consp item) item (list item))
           (subseq list (1+ position) (length list))))
@@ -202,6 +220,35 @@ Example: (one-level-flat '(((note) (note)) ((pause) (pause)) ((note))))
 	(append (mapcar #'(lambda (x2) (funcall fn x1 x2)) xr)
 		(map-pairwise fn xr)))
     NIL))
+
+
+;; Based on https://groups.google.com/forum/#!topic/comp.lang.lisp/xDaUVFDnp5w
+(defun map-neighbours (func list &optional n)
+  "Applying `func' to consecutive sublists of `list'. The number of arguments expected by func implicitly specifies the number of consecutive elements to which the function is applied. This can be overwritten by the optional `n'."
+  (let ((n2 (if n n (length (ccl:arglist func)))))
+    (loop for l on list 
+      when (>= (length l) n2)
+      collect (apply func (subseq l 0 n2)))))
+
+#|
+(map-neighbours #'(lambda (x y) (list x y)) 
+                '(1 2 3 4 5 6))
+=> ((1 2) (2 3) (3 4) (4 5) (5 6))
+
+(map-neighbours #'+ '(1 2 3 4 5 6)
+                3)
+=> (6 9 12 15)
+
+Note: doing the same with loop
+
+(loop
+  for (key value) on '(1 2 3 4 5 6) by #'cddr
+  when value
+  collect (list key value))
+=> ((1 2) (3 4) (5 6))
+
+|#
+
 
 
 (defun all-members? (items inlist &rest args)
@@ -365,7 +412,7 @@ it will add <package-name>:: in front of every symbol."
            (when (not (or (numberp arg)
                           (symbolp arg)
                           (stringp arg)))
-             (error "append-symbols can not handle ~A as an input argument" arg))
+             (error "concatenate-symbols can not handle ~A as an input argument" arg))
            (if (numberp arg)
                                 (format NIL "~A" arg)
                                 (string arg))))
@@ -495,6 +542,26 @@ NB: this function does not return before the cmd is finished -- consider running
 					:wait wait)))
 	(ext:process-close process)
 	process)))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;; for documentation
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun apropos-function-documentation (my-string &optional (package *package*))
+  "Lists all functions that contain `my-string' alongside their documentation in a list of pairs
+  (<function-symbol> <doc-string>)
+
+  Examples:
+  ;;; (apropos-function-documentation \"list\")"
+  (mapcar #'(lambda (x) (list x (documentation x 'function)))
+          (remove-if-not #'fboundp (apropos-list my-string package))))
+
+; (apropos-function-documentation "list")
+; (apropos-function-documentation "map")
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
