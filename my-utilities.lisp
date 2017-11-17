@@ -43,6 +43,33 @@
 ; -> ((1 2) (3 4) (5 6) (7 8) (9 10 11)) 
 
 
+(defun subseqs (sequence positions &optional end)
+  "Splits `sequence' into a list of subsequences split at `positions'. Each element in `positions' specifies a position at which a new sublist starts.
+
+; (subseqs '(0 1 2 3 4 5 6) '(0 2 4))
+=> ((0 1) (2 3) (4 5 6))
+
+; (subseqs '(0 1 2 3 4 5 6) '(2 4 6) 5)
+=> ((2 3) (4))
+
+`positions' are implicitly sorted and positions beyond end are excluded.
+"
+  (let* ((updated-pos (sort (if end
+			       (remove-if #'(lambda (x) (>= x end))
+					  positions)
+			       positions)
+			    #'<))
+	(full-pos (append updated-pos
+			  (list (if end
+				    end
+				    (length sequence))))))
+    (mapcar #'(lambda (start end)
+		(subseq sequence start end))
+	    (butlast full-pos)
+	    (rest full-pos))
+    ))
+
+
 (defun flat (input)
   (labels ((flat-aux (in)
            (if (null in) nil
@@ -78,6 +105,23 @@ Example: (inner-flat '(((note) (note)) ((rest) (rest)) ((note))))
   ; => (A 0 B 1 C 2 D 3 E 4)"
   (apply #'mappend #'list lists))
   
+(defun positions-if (predicate sequence &key key (start 0))
+  "Like the Common Lisp function `position-if', but returns all positions in `sequence' that match `predicate'.
+
+; (positions-if #'oddp '((1) (2) (3) (4)) :key #'car)
+; => (0 2)"
+  (labels ((aux (predicate sequence &key key (start 0) accum)
+	     (let ((pos (position-if predicate sequence :start start :key key)))
+	       (if pos
+		   (aux predicate sequence :start (1+ pos) :key key :accum (cons pos accum))
+		   (reverse accum)))))
+    (aux predicate sequence :start start :key key)))
+
+#|
+;; comparison
+(position-if #'oddp '((1) (2) (3) (4)) :key #'car)
+|#
+
 
 (defun at-position (in-list factor offset)
   "Returns a list containing every factor-th elements of in-list starting at offset"
@@ -224,7 +268,15 @@ Example:
 
 ;; Based on https://groups.google.com/forum/#!topic/comp.lang.lisp/xDaUVFDnp5w
 (defun map-neighbours (func list &optional n)
-  "Applying `func' to consecutive sublists of `list'. The number of arguments expected by func implicitly specifies the number of consecutive elements to which the function is applied. This can be overwritten by the optional `n'."
+  "Applying `func' to consecutive sublists of `list'. The number of arguments expected by func implicitly specifies the number of consecutive elements to which the function is applied. This can be overwritten by the optional `n'.
+
+Example:
+
+;;; (map-neighbours #'(lambda (x y) (list x y)) 
+;;;                 '(1 2 3 4 5 6))
+;;; => ((1 2) (2 3) (3 4) (4 5) (5 6))
+
+Note: function does not work recursively: if a sublist is changed by func the next occurance of the processed value is not changed as well. For example, in the code above, if the number 2 would be 'changed' in the first sublist result, the unchanged 2 would still be an argument to the second call of `func'."
   (let ((n2 (if n n (length (ccl:arglist func)))))
     (loop for l on list 
       when (>= (length l) n2)
@@ -566,7 +618,7 @@ NB: this function does not return before the cmd is finished -- consider running
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
-;;; for debuging
+;;; for debugging
 ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

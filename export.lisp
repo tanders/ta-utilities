@@ -2,8 +2,8 @@
 
 (export '(;; list utils
 	  last-element first-n ensure-list
-          subseq-before subseq-after split-list
-	  flat one-level-flat inner-flat mat-trans zip at-position at-even-position at-odd-position
+          subseq-before subseq-after split-list subseqs
+	  flat one-level-flat inner-flat mat-trans zip positions-if at-position at-even-position at-odd-position
 	  keyword-position before-keyword after-keyword
 	  properties remove-property remove-properties remove-keyargs replace-element update-property
 	  plist->pairs pairs->plist map-plist-vals
