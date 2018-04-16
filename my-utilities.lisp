@@ -212,7 +212,15 @@ Example:
 ; (update-property '(:a 1 :b 2 :c 3) :b 5)
 ; (update-property '(:a 1 :b 2 :c 3) :x 42)
 
+(defun update-properties (plist &rest properties-and-newvalues)
+  "Replaces nondestructivly the values of properties in the property list plist with given new values. If a property is not already contained in plist then it is added at the end.
 
+  Example:
+  (update-properties '(:a 1 :b 2 :c 3) :b 5 :x 42)"
+  (reduce #'(lambda (plist property-and-newvalue)
+	      (update-property plist (first property-and-newvalue) (second property-and-newvalue)))
+	  (plist->pairs properties-and-newvalues)
+	  :initial-value plist))
 
 ;; based on https://github.com/fukamachi/assoc-utils/blob/master/src/assoc-utils.lisp
 (defun plist->pairs (plist)
