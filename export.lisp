@@ -1,6 +1,8 @@
 (in-package :ta-utils)
 
-(export '(;; list utils
+(export '(;; constants
+	  *golden-ratio*
+	  ;; list utils
 	  last-element first-n ensure-list
           subseq-before subseq-after split-list subseqs
 	  flat one-level-flat inner-flat mat-trans zip positions-if at-position at-even-position at-odd-position
