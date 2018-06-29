@@ -382,6 +382,11 @@ Note: doing the same with loop
     (cons (car list) (remove-nth (1- n) (cdr list)))))
 
 
+(defun filter (test sequence &key from-end (start 0) end count key)
+  "Return a copy of sequence with all elements for which test returns nil removed. This is a just a better named variant of the primitive remove-if-not."
+  (remove-if-not test sequence :from-end from-end :start start :end end :count count :key key))
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
 ;;; math utils
