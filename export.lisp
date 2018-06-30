@@ -11,7 +11,7 @@
 	  plist->pairs pairs->plist map-plist-vals
 	  length=1 append-atoms mappend map-pairwise map-neighbours all-members? last-eq? items-ordered-as?
 	  find-recursively dx->x x->dx
-	  remove-nth filter
+	  remove-nth insert-after filter
 	  ;; math utils
 	  between? arithmeric-series average integrate
 	  ;; system

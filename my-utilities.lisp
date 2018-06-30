@@ -381,6 +381,13 @@ Note: doing the same with loop
     (cdr list)
     (cons (car list) (remove-nth (1- n) (cdr list)))))
 
+;; https://stackoverflow.com/questions/4387570/in-common-lisp-how-can-i-insert-an-element-into-a-list-in-place#4388263
+(defun insert-after (lst index newelt)
+  "Returns lst with newelt inserted after the element at position index. It is not possible with this function to insert an element at the very beginning, but you can do that simply with cons."
+  (push newelt (cdr (nthcdr index lst))) 
+  lst)
+;; (insert-after '(a c d) 0 'test)   => (A TEST C D)
+
 
 (defun filter (test sequence &key from-end (start 0) end count key)
   "Return a copy of sequence with all elements for which test returns nil removed. This is a just a better named variant of the primitive remove-if-not."
