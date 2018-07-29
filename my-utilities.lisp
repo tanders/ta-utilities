@@ -394,6 +394,18 @@ Note: doing the same with loop
   (remove-if-not test sequence :from-end from-end :start start :end end :count count :key key))
 
 
+(defun remove-multiple (items sequence &key from-end test test-not (start 0)
+				    end count key)
+  "Same as REMOVE, but removes all ITEMS.
+
+  Example:
+  (remove-multiple '(1 3) '(0 1 2 3 4 5))
+  => (0 2 4 5)"
+  (reduce #'(lambda (seq item) (remove item seq :from-end from-end :test test :test-not test-not :start start
+				       :end end :count count :key key))
+	  items :initial-value sequence))
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
 ;;; math utils
@@ -415,11 +427,49 @@ Note: doing the same with loop
 
 ; (arithmeric-series 2 0 7)
 
+#|
 (defun average (&rest numbers)
   (if (= (length numbers) 0)
     (error "Can not calculate the average of nothing") 
     (/ (apply #'+ numbers)
        (length numbers))))
+|#
+
+; https://stackoverflow.com/questions/33550663/average-using-rest-in-lisp
+(defun average (&rest parameters)
+  (if parameters  ; don't divide by 0 on empty list
+      (/ (apply #'+ parameters) (length parameters))
+      0))
+
+; (average 1 2 3 4) 
+
+;; https://rosettacode.org/wiki/Averages/Median#Common_Lisp
+(defun select-nth (n list predicate)
+  "Select nth element in list, ordered by predicate, modifying list."
+  (do ((pivot (pop list))
+       (ln 0) (left '())
+       (rn 0) (right '()))
+      ((endp list)
+       (cond
+        ((< n ln) (select-nth n left predicate))
+        ((eql n ln) pivot)
+        ((< n (+ ln rn 1)) (select-nth (- n ln 1) right predicate))
+        (t (error "n out of range."))))
+    (if (funcall predicate (first list) pivot)
+      (psetf list (cdr list)
+             (cdr list) left
+             left list
+             ln (1+ ln))
+      (psetf list (cdr list)
+             (cdr list) right
+             right list
+             rn (1+ rn)))))
+(defun median (list predicate)
+  (select-nth (floor (length list) 2) list predicate))
+
+; (median '(1 2 3 4) #'>) 
+
+
 
 (defun integrate (durations time)
   "Return the running sum of the durations, starting from time"
