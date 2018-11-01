@@ -101,7 +101,6 @@ Example: (inner-flat '(((note) (note)) ((rest) (rest)) ((note))))
 => ((note note)  (rest rest) (note))"
   (mapcar #'flat list))
 
-
 (defun mat-trans (lists)
   "Matrix transformation.
    (mat-trans '((a1 a2 a3) (b1 b2 b3) (c1 c2 c3) ...))
@@ -370,6 +369,27 @@ Note: doing the same with loop
     (aux numbers ())))
 
 ; (x->dx '(0 1 3 4 5)) -> (1 2 1 1)
+
+;; from Common Music 2.12 by Rick Taube (though orig was a defun)
+;; https://github.com/ormf/cm
+(defmethod rescale ((value number) (oldmin number) (oldmax number) (newmin number) (newmax number))
+  (+ (* (/ (- newmax newmin) (- oldmax oldmin)) (- value oldmin))
+     newmin))
+; (rescale 4 0 10 0 1)
+
+(defmethod rescale ((values list) (oldmin number) (oldmax number) (newmin number) (newmax number))
+  (loop for value in values
+     collect (rescale value oldmin oldmax newmin newmax)))
+; (rescale '(4 6 8) 0 10 0 1)
+
+(defun scale-sum (xs sum)
+  "Scales all values in xs (a list of numbers) so that their total is sum"
+  (let ((total (reduce #'+ xs)))
+    (loop for x in xs
+       collect (* (/ x total) sum))))
+; (scale-sum '(1/2 1/2 1/2) 1)
+; (scale-sum '(10  10 10) 100)
+
 
 ; https://stackoverflow.com/questions/9444885/common-lisp-how-to-return-a-list-without-the-nth-element-of-a-given-list
 (defun remove-nth (n list)
