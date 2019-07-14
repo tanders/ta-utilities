@@ -175,6 +175,10 @@ Example: (inner-flat '(((note) (note)) ((rest) (rest)) ((note))))
   "Returns all properties of a property list"
   (at-even-position property-list))
 
+(defun plist-values (property-list)
+  "Returns all values of a property list"
+  (at-odd-position property-list))
+
 (defun remove-property (property property-list)
   "Removes a property and its value out of a property list"
   (let ((pos (position property property-list)))
@@ -192,9 +196,6 @@ Example: (inner-flat '(((note) (note)) ((rest) (rest)) ((note))))
 	  properties :initial-value property-list))
 
 ; (remove-properties '(:test1 :test2) '(:a 1 :test1 2 :x 3 :test2 4))
-
-
-
 
 
 (defun remove-keyargs (to-remove key-args)

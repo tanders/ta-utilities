@@ -7,7 +7,7 @@
           subseq-before subseq-after split-list subseqs
 	  flat one-level-flat inner-flat mat-trans zip positions-if at-position at-even-position at-odd-position
 	  keyword-position before-keyword after-keyword
-	  properties remove-property remove-properties remove-keyargs replace-element update-property update-properties
+	  properties plist-values remove-property remove-properties remove-keyargs replace-element update-property update-properties
 	  plist->pairs pairs->plist map-plist-vals
 	  length=1 append-atoms mappend map-pairwise map-neighbours all-members? last-eq? items-ordered-as?
 	  find-recursively dx->x x->dx
