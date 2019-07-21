@@ -6,7 +6,7 @@
 	  ;; constants
 	  *golden-ratio*
 	  ;; list utils
-	  last-element first-n ensure-list
+	  last-element first-n ensure-list ensure-nested-list
           subseq-before subseq-after split-list subseqs
 	  flat one-level-flat inner-flat mat-trans zip positions-if at-position at-even-position at-odd-position
 	  keyword-position before-keyword after-keyword
@@ -21,7 +21,7 @@
 	  ;; system
 	  shell-fn shell 
 	  ;; further utils
-	  convert-to-package recursive-apply save-lisp-expr format-to-file
+	  convert-to-package symbol-to-keyword recursive-apply save-lisp-expr format-to-file
 	  concatenate-symbols alternate
 	  ;; for documentation
 	  apropos-function-documentation

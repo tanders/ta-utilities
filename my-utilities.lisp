@@ -85,6 +85,14 @@
     x
     (list x)))
 
+(defun ensure-nested-list (x)
+  "Ensures that x is a nested list. If not, one or two lists are wrapped around."
+  (if (listp x)
+      (if (listp (first x))
+	  x
+	  (list x))
+    (list (list x))))
+
 (defmethod subseq-before (limiter (proseq sequence))
   "Returns the subsequence before the limiter"
   (subseq proseq 0 (position limiter proseq)))
@@ -583,6 +591,12 @@ it will add <package-name>:: in front of every symbol."
 ;;; package, and the form will be evaluated as if it were typed in 
 ;;; the cmn package.
 
+
+(defun symbol-to-keyword (symbol)
+  (intern (symbol-name symbol) :keyword))
+
+
+;; TA: Should this not be simply a function?
 (defmacro format-to-file (path format-string &rest format-args)
   "The given lisp expr will be saved to the given path."
   (let ((out-sym (gensym)))
