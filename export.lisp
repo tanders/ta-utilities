@@ -1,6 +1,9 @@
 (in-package :ta-utils)
 
-(export '(;; constants
+(export '(;; macros
+	  ;; | |
+	  ;; ->
+	  ;; constants
 	  *golden-ratio*
 	  ;; list utils
 	  last-element first-n ensure-list

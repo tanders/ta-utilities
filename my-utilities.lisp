@@ -1,5 +1,59 @@
 (in-package :ta-utils)
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;; macros
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defmacro | | (&rest l) 
+  "Macro substituting \ for lambda.
+
+* Examples:
+;;; (mapcar (\ (x) (* x x)) '(1 2 3 4))
+"
+  (cons 'lambda l))
+
+'| | 
+
+;; https://stackoverflow.com/questions/11073250/tacit-programming-in-lisp
+(defmacro -> (obj &rest forms)
+  "Similar to the -> macro from clojure, but with a tweak: if there is
+  a _ symbol somewhere in the form, the object is not added as the
+  first argument to the form, but instead replaces the _ symbol.
+
+* Examples:
+;;; (-> '(1 2 3) reverse first)
+
+;;; (-> '(1 2 3) first (* _ 2))
+"
+  (if forms
+      (if (consp (car forms))
+          (let* ((first-form (first forms))
+                 (other-forms (rest forms))
+                 (pos (position '_ first-form)))
+            (if pos
+                `(-> ,(append (subseq first-form 0 pos)
+                              (list obj)
+                              (subseq first-form (1+ pos)))
+                     ,@other-forms)
+                `(-> ,(list* (first first-form) obj (rest first-form))
+                     ,@other-forms)))
+          `(-> ,(list (car forms) obj)
+               ,@(cdr forms)))
+      obj))
+#|
+(-> "TEST"
+    string-downcase
+    reverse)
+
+(-> "TEST"
+    reverse
+    (elt _ 1))
+|#
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
 ;;; constants
