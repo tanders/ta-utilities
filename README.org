@@ -1,9 +1,11 @@
 * ta-utilities
 
-This [[https://common-lisp.net/project/asdf/][ASDF]] system provides a collection of general Common Lisp utilities.
+This folder contains an internal Aiva development continuation of the open-source library [[https://github.com/tanders/ta-utilities][ta-utilities]], an [[https://common-lisp.net/project/asdf/][ASDF]] system provides a collection of general Common Lisp utilities.
 
 
 * Installation
+
+  *For all projects for which there exists an internal Aiva development continuation, replace the git repository paths with the Aiva repository.*
   
   The instructions below use git for the installation. Even though it is a bit more involved at first, it allows for convenient updates later, and you can even contribute to the development. 
 
