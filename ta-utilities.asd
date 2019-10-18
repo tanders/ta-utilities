@@ -4,7 +4,7 @@
 
 (asdf:defsystem ta-utilities
   :description "A collection of auxilary definitions, useful for various projects." 
-  :author "Torsten Anders <torsten.anders@beds.ac.uk>"
+  :author "Torsten Anders <torstenanders@gmx.de>"
   :licence "GNU General Public License, Version 3"
   :version "0.2"
   :serial t ;; the dependencies are linear.
