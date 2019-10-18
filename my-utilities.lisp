@@ -705,8 +705,8 @@ it will add <package-name>:: in front of every symbol."
    (T (error "Unknown expr to evaluate! Calling my-eval with ~A" form))))
 
 (defun save-lisp-expr (expr &optional (path
-				       ;; !! function path undefined (in SBCL)
-				       #-ccl (path "score.lisp")
+				       #-ccl (pathname "score.lisp")
+				       ;; #-ccl (path "score.lisp")
 				       #+ccl (ccl:choose-new-file-dialog)))
   "The given lisp expr will be saved to the given path."
   ;(print 'test)
