@@ -509,14 +509,27 @@ Note: doing the same with loop
 
 
 ; https://stackoverflow.com/questions/9444885/common-lisp-how-to-return-a-list-without-the-nth-element-of-a-given-list
-(defun remove-nth (n list)
-  "Return list with element at position n (int) removed."
-  (declare
-    (type (integer 0) n)
-    (type list list))
-  (if (or (zerop n) (null list))
-    (cdr list)
-    (cons (car list) (remove-nth (1- n) (cdr list)))))
+;; (defun remove-nth (n list)
+;;   "Return list with element at position n (int) removed."
+;;   (declare
+;;     (type (integer 0) n)
+;;     (type list list))
+;;   (if (or (zerop n) (null list))
+;;     (cdr list)
+;;     (cons (car list) (remove-nth (1- n) (cdr list)))))
+;; https://stackoverflow.com/questions/4093845/is-there-a-common-lisp-macro-for-popping-the-nth-element-from-a-list
+(defun remove-nth (list n)
+  (remove-if (constantly t) list :start n :end (1+ n)))
+
+(define-modify-macro remove-nth-f (n) remove-nth "Remove the nth element")
+
+;; https://stackoverflow.com/questions/4093845/is-there-a-common-lisp-macro-for-popping-the-nth-element-from-a-list
+(defmacro pop-nth (xs n)
+  "Return the n-th element of xs and remove that element from xs."
+  (let ((n-var (gensym)))
+    `(let ((,n-var ,n))
+       (prog1 (nth ,n-var ,xs)
+         (remove-nth-f ,xs ,n-var)))))
 
 ;; https://stackoverflow.com/questions/4387570/in-common-lisp-how-can-i-insert-an-element-into-a-list-in-place#4388263
 (defun insert-after (lst index newelt)
