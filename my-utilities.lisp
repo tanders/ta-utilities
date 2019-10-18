@@ -413,7 +413,7 @@ Example:
 ;;; => ((1 2) (2 3) (3 4) (4 5) (5 6))
 
 Note: function does not work recursively: if a sublist is changed by func the next occurance of the processed value is not changed as well. For example, in the code above, if the number 2 would be 'changed' in the first sublist result, the unchanged 2 would still be an argument to the second call of `func'."
-  (let ((n2 (if n n (length (ccl:arglist func)))))
+  (let* ((n2 (if n n (arity func))))
     (loop for l on list 
       when (>= (length l) n2)
       collect (apply func (subseq l 0 n2)))))
