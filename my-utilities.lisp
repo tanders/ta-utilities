@@ -404,7 +404,7 @@ Example:
 
 ;; Based on https://groups.google.com/forum/#!topic/comp.lang.lisp/xDaUVFDnp5w
 (defun map-neighbours (func list &optional n)
-  "Applying `func' to consecutive sublists of `list'. The number of arguments expected by func implicitly specifies the number of consecutive elements to which the function is applied. This can be overwritten by the optional `n'.
+  "Applying `func' to consecutive sublists of `list'. The number of arguments (must be required args) expected by func implicitly specifies the number of consecutive elements to which the function is applied. This can be overwritten by the optional `n'.
 
 Example:
 
