@@ -4,7 +4,7 @@
 	  ;; | |
 	  ;; ->
 	  ;; constants
-	  *golden-ratio*
+	  +golden-ratio+
 	  ;; list utils
 	  last-element first-n ensure-list ensure-nested-list
           subseq-before subseq-after split-list subseqs

@@ -63,7 +63,7 @@
 ;; Not very accurate, but likely good enough
 ;; Is the printing of the number or the actual number rounded>
 ;; 1.6180339887
-(defconstant *golden-ratio* (/ (+ 1 (sqrt 5)) 2))
+(defconstant +golden-ratio+ (/ (+ 1 (sqrt 5)) 2))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
