@@ -239,19 +239,30 @@ Example: (inner-flat '(((note) (note)) ((rest) (rest)) ((note))))
 |#
 
 
+;; (defun at-position (in-list factor offset)
+;;   "Returns a list containing every factor-th elements of in-list starting at offset"
+;;   (mapcar #'(lambda (i) (nth i in-list))
+;;           (arithmeric-series factor offset
+;; 			     (- (ceiling (/ (length in-list) factor))
+;; 				(ceiling (/ offset factor))))))
 (defun at-position (in-list factor offset)
   "Returns a list containing every factor-th elements of in-list starting at offset"
-  (mapcar #'(lambda (i) (nth i in-list))
-          (arithmeric-series factor offset (ceiling (/ (length in-list)
-                                                       factor)))))
+  (let ((xs (apply #'vector in-list)))
+    (loop for pos from offset to (1- (length xs)) by factor
+       collect (elt xs pos))))
+; (at-position '(1 2 3 4 5 6 7 8 9 10) 3 0)
 ; (at-position '(1 2 3 4 5 6 7 8 9 10) 3 1)
+; (at-position '(1 2 3 4 5 6 7 8 9 10 11 12) 3 1)
+; (at-position '(1 2 3 4 5 6 7 8 9 10) 3 2)
+
+
 
 (defun at-even-position (in-list)
   (at-position in-list 2 0))
+; (at-even-position '(1 2 3 4 5 6 7 8))
 
 (defun at-odd-position (in-list)
   (at-position in-list 2 1))
-
 ; (at-odd-position '(1 2 3 4 5 6 7 8))
 
 (defun keyword-position (list)
