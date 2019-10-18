@@ -5,6 +5,8 @@
 	  ;; ->
 	  ;; constants
 	  +golden-ratio+
+	  ;; function utils
+	  arglist arity
 	  ;; list utils
 	  last-element first-n ensure-list ensure-nested-list
           subseq-before subseq-after split-list subseqs
@@ -15,13 +17,13 @@
 	  length=1 append-atoms mappend map-pairwise map-neighbours all-members? last-eq? items-ordered-as?
 	  find-recursively dx->x x->dx
 	  rescale scale-sum
-	  remove-nth insert-after filter remove-multiple
+	  remove-nth pop-nth insert-after filter remove-multiple
 	  ;; math utils
 	  between? arithmeric-series average median integrate
 	  ;; system
 	  shell-fn shell 
 	  ;; further utils
-	  convert-to-package symbol-to-keyword recursive-apply save-lisp-expr format-to-file
+	  convert-to-package symbol-to-keyword recursive-apply save-lisp-expr format-to-file read-file write-file
 	  concatenate-symbols alternate
 	  ;; for documentation
 	  apropos-function-documentation
