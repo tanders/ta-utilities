@@ -68,6 +68,49 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
+;;; function utils
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; From clocc/port/sys.lisp, http://clocc.hg.sourceforge.net/hgweb/clocc/clocc/raw-file/tip/src/port/sys.lisp
+;; See also https://stackoverflow.com/questions/15465138/find-functions-arity-in-common-lisp
+(defun arglist (fn)
+  "Return the signature of the function."
+  #+allegro (excl:arglist fn)
+  #+clisp (sys::arglist fn)
+  #+(or cmu scl)
+  (let ((f (coerce fn 'function)))
+    (typecase f
+      (STANDARD-GENERIC-FUNCTION (pcl:generic-function-lambda-list f))
+      (EVAL:INTERPRETED-FUNCTION (eval:interpreted-function-arglist f))
+      (FUNCTION (values (read-from-string (kernel:%function-arglist f))))))
+  #+cormanlisp (ccl:function-lambda-list
+                (typecase fn (symbol (fdefinition fn)) (t fn)))
+  #+gcl (let ((fn (etypecase fn
+                    (symbol fn)
+                    (function (si:compiled-function-name fn)))))
+          (get fn 'si:debug))
+  #+lispworks (lw:function-lambda-list fn)
+  #+lucid (lcl:arglist fn)
+  #+sbcl (sb-introspect:function-lambda-list fn)
+  #-(or allegro clisp cmu cormanlisp gcl lispworks lucid sbcl scl)
+  (error 'not-implemented :proc (list 'arglist fn)))
+;; (arglist #'find-if)
+
+
+;; https://stackoverflow.com/questions/15465138/find-functions-arity-in-common-lisp
+(defun arity (fn)
+  "Returns the number of required arguments expected by `fn`. Results in an error when called with functions expecting other then required/positional arguments."
+  (let ((arglist (arglist fn)))
+    (if (intersection arglist lambda-list-keywords)
+        (error "~S lambda list ~S does not contain only required/positional arguments" fn arglist)
+        (length arglist))))
+;; (arity #'nth)
+;; (arity #'find-if)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
 ;;; list utils
 ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
