@@ -672,6 +672,23 @@ it will add <package-name>:: in front of every symbol."
                                :if-exists :supersede)
        (format ,out-sym ,format-string ,@format-args))))
 
+;; https://riptutorial.com/common-lisp/example/19473/reading-and-writing-entire-files-to-and-from-strings
+(defun read-file (infile)
+  "Read an entire file into a new string and return it. The result is NIL if the file does not exists."
+  (with-open-file (instream infile :direction :input :if-does-not-exist :error)
+    (when instream 
+      (let ((string (make-string (file-length instream))))
+        (read-sequence string instream)
+        string))))
+
+(defun write-file (outfile string &key (action-if-exists :supersede))
+  "Write a string to a file. `action-if-exists` specifies what to do if the file already exists."
+  (check-type action-if-exists (member nil :error :new-version :rename :rename-and-delete 
+				       :overwrite :append :supersede))
+  (with-open-file (outstream outfile :direction :output :if-exists action-if-exists)
+    (write-sequence string outstream)))
+
+
 
 (defun recursive-apply (form)
   "Somewhat like eval, but no evaluation of symbols"
