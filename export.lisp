@@ -20,6 +20,8 @@
 	  remove-nth pop-nth insert-after filter remove-multiple
 	  ;; math utils
 	  between? arithmeric-series average median integrate
+	  ;; PC utilities
+	  pitch->pc pc-transpose-to-0 pitches->pc-normal-form
 	  ;; system
 	  shell-fn shell 
 	  ;; further utils
