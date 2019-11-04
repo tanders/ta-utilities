@@ -233,6 +233,7 @@ Example: (inner-flat '(((note) (note)) ((rest) (rest)) ((note))))
 		   (reverse accum)))))
     (aux predicate sequence :start start :key key)))
 #|
+(positions-if #'oddp '((1) (2) (3) (4)) :key #'car)
 ;; comparison
 (position-if #'oddp '((1) (2) (3) (4)) :key #'car)
 |#
@@ -687,9 +688,9 @@ NOTE: With sets of great intervallic regularity, the ordering that begins with t
 	aux
 	(let* (;; Compiler note : "could not stack allocate..." -- why?
 	       (pcs (sort aux #'<))
-	       (intervals-between (pitch->pc (tu:x->dx (append pcs (list (first pcs))))))
+	       (intervals-between (pitch->pc (x->dx (append pcs (list (first pcs))))))
 	       (max-interval (apply #'max intervals-between))
-	       (max-interval-positions (loop for pos in (tu:positions-if (lambda (x) (= x max-interval)) intervals-between)
+	       (max-interval-positions (loop for pos in (positions-if (lambda (x) (= x max-interval)) intervals-between)
 					  ;; Position to the right...
 					  collect (mod (1+ pos) l)))
 	       (candidate-forms
@@ -796,7 +797,7 @@ it will add <package-name>:: in front of every symbol."
       (apply fun (mapcar #'(lambda(x)
                              (recursive-apply x))
                          (rest form)))))
-   ;; !! cmu compiler says: Note: Deleting unreachable code.
+   ;; !! cmu and SBCL compiler say: Note: Deleting unreachable code.
    (T (error "Unknown expr to evaluate! Calling my-eval with ~A" form))))
 
 (defun save-lisp-expr (expr &optional (path
