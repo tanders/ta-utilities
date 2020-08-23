@@ -93,8 +93,10 @@
   #+lispworks (lw:function-lambda-list fn)
   #+lucid (lcl:arglist fn)
   #+sbcl (sb-introspect:function-lambda-list fn)
-  #-(or allegro clisp cmu cormanlisp gcl lispworks lucid sbcl scl)
+  #+ccl (ccl:arglist fn)
+  #-(or allegro clisp cmu cormanlisp gcl lispworks lucid sbcl scl ccl)
   (error 'not-implemented :proc (list 'arglist fn)))
+;; (arglist #'nth)
 ;; (arglist #'find-if)
 
 
