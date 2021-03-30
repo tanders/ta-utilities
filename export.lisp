@@ -3,6 +3,7 @@
 (export '(;; macros
 	  ;; | |
 	  ;; ->
+	  dbind
 	  ;; constants
 	  +golden-ratio+
 	  ;; function utils

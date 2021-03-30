@@ -54,6 +54,59 @@
 |#
 
 
+(defun destruc (pat seq &optional (atom? #'atom) (n 0))
+  "[Aux for dbind]"
+  (if (null pat)
+      nil
+      (let ((rest (cond ((funcall atom? pat) pat)
+                        ((eq (car pat) '&rest) (cadr pat))
+                        ((eq (car pat) '&body) (cadr pat))
+                        (t nil))))
+       (if rest
+           `((,rest (subseq ,seq ,n)))
+           (let ((p (car pat))
+                 (rec (destruc (cdr pat) seq atom? (1+ n))))
+             (if (funcall atom? p)
+                 (cons `(,p (elt ,seq ,n))
+                       rec)
+                 (let ((var (gensym)))
+                   (cons (cons `(,var (elt ,seq ,n))
+                               (destruc p var atom?))
+                         rec))))))))
+
+(defun dbind-ex (binds body)
+  "[Aux for dbind]"
+  (if (null binds)
+      `(progn ,@body)
+      `(let ,(mapcar #'(lambda (b)
+                         (if (consp (car b))
+                             (car b)
+                             b))
+                     binds)
+        ,(dbind-ex (mapcan #'(lambda (b)
+                               (if (consp (car b))
+                                   (cdr b)))
+                           binds)
+                   body))))
+
+;; From Graham's On Lisp, p. 232
+(defmacro dbind (pat seq &body body)
+  "Generalisation of `destructuring-bind' for any kind of sequence."
+  (let ((gseq (gensym)))
+    `(let ((,gseq ,seq))
+       ,(dbind-ex (destruc pat gseq #'atom) body))))
+#|
+(dbind (a (b c) d) '( 1 #(2 3) 4)
+  (list a b c d))
+=> (1 2 3 4)
+
+(dbind (a (b . c) &rest d) '(1 "fribble" 2 3 4) 
+  (list a b c d))
+=> (1 #\f "ribble" (2 3 4))
+|#
+
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
 ;;; constants
