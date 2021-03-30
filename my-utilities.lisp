@@ -183,6 +183,10 @@
     x
     (list x)))
 
+(defun nested-list? (x)
+  "Return T if `x' is a list where the first element again is a list."
+  (and (listp x) (listp (first x))))
+
 (defun ensure-nested-list (x)
   "Ensures that x is a nested list. If not, one or two lists are wrapped around."
   (if (listp x)
@@ -268,6 +272,9 @@ Example: (inner-flat '(((note) (note)) ((rest) (rest)) ((note))))
   (apply #'mapcar #'(lambda (&rest all) all) 
 	 lists))
 ; (mat-trans '((a1 a2 a3) (b1 b2 b3) (c1 c2 c3)))
+
+; (mat-trans '(((a 1) (a 2) (a 3)) ((b 1) (b 2) (b 3)) ((c 1) (c 2) (c 3))))
+
 
 (defun zip (&rest lists)
   "Zips/splices any number of lists together so that in the resulting list elements from different list are alternating.
@@ -473,9 +480,11 @@ Example:
 ; (pairs->plist '((:LENGTH 1/16) (:PITCH 60) (:VELOCITY 30)))
 ; -> (:LENGTH 1/16 :PITCH 60 :VELOCITY 30)
 
+;;; TODO: If fn expects two args, hand over key as 2nd arg.
 (defun map-plist-vals (fn plist)
   "mapcar relative: maps fn over values in plist."
-  (apply #'mappend #'(lambda (key val) (list key (funcall fn val)))
+  (apply #'mappend #'(lambda (key val)
+		       (list key (funcall fn val)))
          (mat-trans (plist->pairs plist))))
 
 #|
