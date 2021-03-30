@@ -275,6 +275,36 @@ Example: (inner-flat '(((note) (note)) ((rest) (rest)) ((note))))
   (zip '(a b c d e) '(0 1 2 3 4))
   ; => (A 0 B 1 C 2 D 3 E 4)"
   (apply #'mappend #'list lists))
+
+
+;; from https://gist.github.com/capablemonkey/4133438ba7043af94691a2b54d997e8b#file-cartesian-lisp
+(defun aux-cartesian-product (fn a b)
+  (mapcan
+   (lambda (item-from-a)
+     (mapcar
+      (lambda (item-from-b)
+	(if (listp item-from-a) ; cartesian-product does not work on nested lists
+            (append item-from-a (list item-from-b))
+            (funcall fn item-from-a item-from-b)))
+      b))
+   a))
+#|
+(aux-cartesian-product #'list '(a b) '(1 2))
+=> ((A 1) (A 2) (B 1) (B 2))
+|#
+
+(defun cartesian-product (fn &rest lists)
+  "Note: does not work on nested lists. Use other nested data structures."
+  (reduce (lambda (x y)
+	    (aux-cartesian-product fn x y))
+	  lists))
+#|
+(cartesian-product #'list '(a b) '(1 2) '(x y))
+=> ((A 1 X) (A 1 Y) (A 2 X) (A 2 Y) (B 1 X) (B 1 Y) (B 2 X) (B 2 Y))
+
+(cartesian-product #'list '(a b) '(1 2 3))
+|#
+
   
 (defun positions-if (predicate sequence &key key (start 0))
   "Like the Common Lisp function `position-if', but returns all positions in `sequence' that match `predicate'.
