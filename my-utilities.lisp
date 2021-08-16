@@ -215,7 +215,7 @@
   (subseq proseq (1+ (position limiter proseq))))
 
 (defun split-list (n inlist)
-  "splits inlist in a list of n sublist of same length (last list may be longer)."
+  "Splits inlist in a list of n sublist of same length (last list may be longer)."
   (let* ((length (length inlist))
 	 (sublength (floor length (- n 0))))	; except the last sublength
     (append
