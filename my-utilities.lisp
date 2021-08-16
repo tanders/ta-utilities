@@ -195,6 +195,17 @@
 	  (list x))
     (list (list x))))
 
+;; Inspired by https://common-lisp.net/project/cl-utilities/doc/split-sequence.html
+(defun split-list-if (test list &aux (start list) (end list))
+  "Splits LIST into nested lists starting a new sublist at every element matching the Boolean function TEST. Includes the matching list elements in the result."
+  (loop while (and end (setq start (member-if-not test end)))
+     collect (ldiff end (setq end (member-if test start)))))
+
+#|
+(setf xs '(1 2 3 4 5 6))
+(split-list-if #'evenp xs) ; => ((1) (2 3) (4 5))
+|#
+
 (defmethod subseq-before (limiter (proseq sequence))
   "Returns the subsequence before the limiter"
   (subseq proseq 0 (position limiter proseq)))

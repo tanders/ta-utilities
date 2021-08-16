@@ -10,7 +10,7 @@
 	  arglist arity
 	  ;; list utils
 	  last-element first-n ensure-list nested-list? ensure-nested-list
-          subseq-before subseq-after split-list subseqs
+          split-list-if subseq-before subseq-after split-list subseqs
 	  flat one-level-flat inner-flat mat-trans zip cartesian-product
 	  positions-if best-if at-position at-even-position at-odd-position
 	  keyword-position before-keyword after-keyword
