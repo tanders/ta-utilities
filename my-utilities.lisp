@@ -195,15 +195,26 @@
 	  (list x))
     (list (list x))))
 
-;; Inspired by https://common-lisp.net/project/cl-utilities/doc/split-sequence.html
-(defun split-list-if (test list &aux (start list) (end list))
-  "Splits LIST into nested lists starting a new sublist at every element matching the Boolean function TEST. Includes the matching list elements in the result."
-  (loop while (and end (setq start (member-if-not test end)))
-     collect (ldiff end (setq end (member-if test start)))))
-
+(defun split-if (fn xs &aux (result NIL) (start 0))
+  "Splits XS into nested lists starting a new sublist at every element matching the Boolean function FN. Includes the matching list elements in the result."
+  (loop
+     for x in (rest xs)
+     for i from 0
+     when (funcall fn x)
+     do (progn
+	  (push (subseq xs start (1+ i)) result)
+	  (setq start (1+ i))))
+  (push (subseq xs start) result)
+  (reverse result))
 #|
-(setf xs '(1 2 3 4 5 6))
-(split-list-if #'evenp xs) ; => ((1) (2 3) (4 5))
+(split-if (lambda (x) (= (mod x 3) 0)) '(1 2 3 4 5 6 7))
+; => ((1 2) (3 4 5) (6 7))
+
+(split-if #'evenp ())
+; => (())
+
+(split-if #'evenp '(1 3))
+; => ((1 3))
 |#
 
 (defmethod subseq-before (limiter (proseq sequence))
@@ -228,7 +239,7 @@
 ; -> ((1 2) (3 4) (5 6) (7 8) (9 10))
 ; (split-list 5 (loop for i from 1 to 11 collect i))
 ; -> ((1 2) (3 4) (5 6) (7 8) (9 10 11)) 
-
+;; (split-list 2 ())
 
 (defun subseqs (sequence positions &optional end)
   "Splits `sequence' into a list of subsequences split at `positions'. Each element in `positions' specifies a position at which a new sublist starts.
