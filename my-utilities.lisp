@@ -522,7 +522,7 @@ Example:
   (= (length inlist) 1))
 
 (defun append-atoms (inlist &rest atoms)
-  "takes a list and an arbitrary number of atoms and puts all those in one list"
+  "Takes a list and an arbitrary number of atoms and puts all those in one list"
   (append inlist atoms))
 
 (defun mappend (func &rest inlists)
