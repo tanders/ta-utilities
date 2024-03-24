@@ -29,6 +29,7 @@
 	  ;; further utils
 	  convert-to-package symbol-to-keyword recursive-apply save-lisp-expr format-to-file read-file write-file
 	  concatenate-symbols alternate
+	  read-random-state
 	  ;; for documentation
 	  apropos-function-documentation
 	  ;; for debuging

@@ -106,7 +106,6 @@
 |#
 
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
 ;;; constants
@@ -944,6 +943,32 @@ it will add <package-name>:: in front of every symbol."
          collect (if (evenp i)
                    (funcall func1 (nth i list))
                    (funcall func2 (nth i list)))))
+
+
+(let ((random-state-directory
+       (merge-pathnames (make-pathname :directory '(:relative "random-states")) (UIOP:temporary-directory))))
+  (defun random-state-filename (seed)
+    ;; (break)
+    (merge-pathnames (write-to-string seed) random-state-directory)))
+; (random-state-filename 1)
+
+(defun write-random-state (seed
+			  &optional (state T))
+  """Save a new random state in a file such that it can be read by read-random-state when given the same seed."""
+  (with-open-file (stream (random-state-filename seed) :direction :output :if-exists :supersede)
+    (print (make-random-state t) stream)))
+
+(defun read-random-state (seed
+			  &optional (state T))
+  """Return a random state. If seed was never used before, then a new random state is returned, otherwise the same random state used for that seed before."""
+  (unless (uiop:file-exists-p (random-state-filename seed))
+    (write-random-state seed))
+  ;; TODO: Check whether state file exists already
+  (with-open-file (stream (random-state-filename seed) :direction :input)
+    (read stream)))
+
+;; (read-random-state 1)
+;; (read-random-state 2)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
