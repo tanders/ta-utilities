@@ -960,7 +960,16 @@ it will add <package-name>:: in front of every symbol."
 
 (defun read-random-state (seed
 			  &optional (state T))
-  """Return a random state. If seed was never used before, then a new random state is returned, otherwise the same random state used for that seed before."""
+  """
+  Return a random state. If seed was never used before, then a new random state is returned,
+  otherwise the same random state used for that seed before.
+
+  Note that random states are preserved in the background by saving them to disk in a directory for
+  temporary files. Better do not rely on the same seeds resulting in the same random state for the
+  long term (e.g., after your computer was restarted) and the seeds here are also not portable
+  between computers or Lisp implementations. This all is due to the way builtin random states are
+  implemented for Common Lisp.
+  """
   (unless (uiop:file-exists-p (random-state-filename seed))
     (write-random-state seed))
   ;; TODO: Check whether state file exists already
